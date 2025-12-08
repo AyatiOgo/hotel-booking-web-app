@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'hotelApp',
     'tailwind',
     'theme',
+     'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [

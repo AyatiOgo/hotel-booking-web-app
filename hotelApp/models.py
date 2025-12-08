@@ -7,6 +7,13 @@ class HotelRoomsModel(models.Model):
     room_description = models.TextField(max_length=2000)
     room_no = models.IntegerField()
     room_price = models.IntegerField()
+    room_dimension = models.CharField(max_length=50)
+    room_bed_no = models.CharField(max_length=50)
+    room_occupants_no = models.CharField(max_length=100)
+    room_meal_access = models.CharField(max_length=100)
+    room_electricity = models.BooleanField(default=True)
+    room_AC = models.BooleanField(default=True)
+    room_pool_access = models.BooleanField(default=True)
 
     def __str__(self):
         return self.room_name
@@ -21,7 +28,6 @@ class Booking(models.Model):
     start_date = models.CharField(max_length=50)
     end_date = models.CharField(max_length=50)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-
     guest_name = models.CharField(max_length=200)
     guest_email = models.EmailField()
     guest_number = models.CharField(max_length=20)

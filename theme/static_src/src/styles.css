@@ -1,5 +1,18 @@
+
+@font-face {
+  font-family: "oliver";
+  src: url("../static/fonts/Olivera_Demo.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 @import "tailwindcss";
 @plugin "daisyui";
+
+@theme {
+  --font-olivera: "olivera", sans-serif;
+}
 
 /**
   * A catch-all path to Django template files, JavaScript, and Python files

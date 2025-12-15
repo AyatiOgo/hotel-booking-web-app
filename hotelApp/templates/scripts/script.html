@@ -1,0 +1,38 @@
+<script>  
+  
+  
+  document.getElementById("checkAvailability").onclick = () => {
+            document.getElementById("calendarWrapper").classList.remove("hidden");
+        };
+
+        let checkinDate = null;
+        let checkoutDate = null;
+
+        flatpickr("#checkin", {
+            minDate: "today",
+            onChange: function(selectedDates) {
+                checkinDate = selectedDates[0];
+                checkoutCalendar.set("minDate", checkinDate);
+            }
+        });
+
+        const checkoutCalendar = flatpickr("#checkout", {
+            minDate: "today",
+            onChange: function(selectedDates) {
+                checkoutDate = selectedDates[0];
+
+                if (checkinDate && checkoutDate) {
+                    document.getElementById("continueBtn").disabled = false;
+                }
+            }
+        });
+
+        document.getElementById("continueBtn").onclick = () => {
+            const params = new URLSearchParams({
+                check_in: checkinDate.toISOString().split("T")[0],
+                check_out: checkoutDate.toISOString().split("T")[0],
+            });
+
+            window.location.href = `/booking/{{ room.id }}/?${params}`;
+        };
+</script>

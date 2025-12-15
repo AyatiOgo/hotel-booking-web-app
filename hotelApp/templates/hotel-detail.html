@@ -1,11 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>  </h1>
-</body>
-</html>
+{% extends 'index.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <!-- MAIN SECTION -->
+    <div class="w-full bg-[#FBF3E7] h-auto"> 
+        {% include 'components/navbar.html' %}
+        <!-- CONTENT CONTAINER -->
+        <div class=" w-full flex justify-center items-center pt-10 flex-col">
+            <div class="w-[1300px] flex items-center"> 
+
+                <div class="w-full flex flex-col p-8 bg-white rounded-[40px] gap-8">
+                     <!-- ROOM IMAGE -->
+                    <img src="{{ room.room_image.url }}" alt="{{ room.room_name }}" class="w-full h-[495px] object-cover rounded-[24px]"  >
+                    
+                    <!-- ROOM DETAILS -->
+                    <div class="w-full flex justify-between gap-4">
+                        <div class="flex flex-col w-[70%] ">
+                            <h1 class="text-[48px] font-bold"> {{ room.room_name }} </h1>
+                            <p> {{ room.room_description }} </p>
+                        </div>
+                        <div class="p-4 flex flex-col bg-[#F5F5F5] w-[30%] h-fit gap-4 rounded-[16px] ">
+                            <p class="text-[20px]"> <span class="font-bold"> {{ room.room_no }} </span> rooms available </p>
+                            <!-- <input id="checkin" class="border p-2"> -->
+                            <button class="bg-[#F2D9B1] py-3 px-8 text-[20px] font-bold rounded-full" id="checkAvailability"> Check Availabilty  </button>
+                        </div>
+                    </div>
+
+                    <!-- ROOM ICONS -->
+                     <div class="flex flex-row w-fit border-t border-b border-[#C1C2C2] ">
+                        <div class="w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-[#C1C2C2] gap-2">
+                            <i title="Size"> <img src="{% static 'icons/size-icon.svg' %}" alt="size-icon" > </i>
+                            <p class="text-[12px] text-[#9fa0a0]"> {{ room.room_dimension }} </p>
+                        </div>
+                        <div class="w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-[#C1C2C2] gap-2">
+                            <i title="Size"> <img src="{% static 'icons/bulb-icon.svg' %}" alt="size-icon" > </i>
+                            <p class="text-[12px] text-[#9fa0a0]"> {{ room.room_dimension }} </p>
+                        </div>
+                        <div class="w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-[#C1C2C2] gap-2">
+                            <i title="Size"> <img src="{% static 'icons/AC-icon.svg' %}" alt="size-icon" > </i>
+                            <p class="text-[12px] text-[#9fa0a0]"> {{ room.room_dimension }} </p>
+                        </div>
+                        <div class="w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-[#C1C2C2] gap-2">
+                            <i title="Size"> <img src="{% static 'icons/pool-icon.svg' %}" alt="size-icon" > </i>
+                            <p class="text-[12px] text-[#9fa0a0]"> {{ room.room_dimension }} </p>
+                        </div>
+                        <div class="w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-[#C1C2C2] gap-2">
+                            <i title="Size"> <img src="{% static 'icons/food-icon.svg' %}" alt="size-icon" > </i>
+                            <p class="text-[12px] text-[#9fa0a0]"> {{ room.room_dimension }} </p>
+                        </div>
+                        <div class="w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-[#C1C2C2] gap-2">
+                            <i title="Size"> <img src="{% static 'icons/bed-icon.svg' %}" alt="size-icon" > </i>
+                            <p class="text-[12px] text-[#9fa0a0]"> {{ room.room_dimension }} </p>
+                        </div>
+                        <div class="w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-[#C1C2C2] gap-2">
+                            <i title="Size"> <img src="{% static 'icons/user-icon.svg' %}" alt="size-icon" > </i>
+                            <p class="text-[12px] text-[#9fa0a0]"> {{ room.room_dimension }} </p>
+                        </div>
+                        <div class="w-[80px] h-[80px] flex justify-center flex-col items-center  border-[#C1C2C2] gap-2">
+                            <i title="Size"> <img src="{% static 'icons/bath-icon.svg' %}" alt="size-icon" > </i>
+                            <p class="text-[12px] text-[#9fa0a0]"> {{ room.room_dimension }} </p>
+                        </div>
+                     </div>
+                </div>
+            </div>
+
+            <!-- Absolute Box -->
+
+            <div class="hidden w-full fixed scroll-0 top-0  h-full bg-black/30" id="calendarWrapper" > 
+                <div class="w-full h-full flex items-center justify-center" >
+                    <div class="bg-white p-10 rounded-md flex flex-col items-center">
+                        <h3 class="text-2xl font-bold pb-4"> Check Available Dates </h3>
+                        <div>
+                            <input type="text" id="checkin" placeholder="Check-in">
+                            <input type="text" id="checkout" placeholder="Check-out">
+                        </div>
+                        <button id="continueBtn" class="btn btn-success mt-3" disabled>
+                            Continue to booking
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+           
+        </div>
+
+       
+
+    </div>
+
+
+
+{% endblock  %}
+

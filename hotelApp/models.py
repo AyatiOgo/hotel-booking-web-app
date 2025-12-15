@@ -1,8 +1,10 @@
 from django.db import models
+from autoslug import AutoSlugField
 
 # Create your models here.
 class HotelRoomsModel(models.Model):
     room_name = models.CharField(max_length=100)
+    slug = AutoSlugField(populate_from='room_name', null=True, blank=True)
     room_image = models.ImageField(null=True, blank=True)
     room_description = models.TextField(max_length=2000)
     room_no = models.IntegerField()
@@ -25,8 +27,8 @@ class RoomImages(models.Model):
     
 class Booking(models.Model):
     room = models.ForeignKey(HotelRoomsModel, related_name="bookings", on_delete=models.CASCADE )
-    start_date = models.CharField(max_length=50)
-    end_date = models.CharField(max_length=50)
+    check_in = models.DateField(max_length=50)
+    check_out = models.DateField(max_length=50)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     guest_name = models.CharField(max_length=200)
     guest_email = models.EmailField()

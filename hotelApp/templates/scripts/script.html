@@ -1,38 +1,72 @@
 <script>  
   
-  
-  document.getElementById("checkAvailability").onclick = () => {
-            document.getElementById("calendarWrapper").classList.remove("hidden");
-        };
+const calendarWrapper = document.getElementById("calendarWrapper");
 
-        let checkinDate = null;
-        let checkoutDate = null;
+let checkinDate = null;
+let checkoutDate = null;
 
-        flatpickr("#checkin", {
-            minDate: "today",
-            onChange: function(selectedDates) {
-                checkinDate = selectedDates[0];
-                checkoutCalendar.set("minDate", checkinDate);
-            }
-        });
+// 🔑 STORE INSTANCES
+const checkinCalendar = flatpickr("#checkin", {
+    minDate: "today",
+    onReady: function(selectedDates, dateStr, instance) {
+        // optional: nothing here
+    },
+    onChange: function(selectedDates) {
+        checkinDate = selectedDates[0];
 
-        const checkoutCalendar = flatpickr("#checkout", {
-            minDate: "today",
-            onChange: function(selectedDates) {
-                checkoutDate = selectedDates[0];
+        // Set min checkout date
+        checkoutCalendar.set("minDate", checkinDate);
 
-                if (checkinDate && checkoutDate) {
-                    document.getElementById("continueBtn").disabled = false;
-                }
-            }
-        });
+        // 🔑 OPEN CHECKOUT AUTOMATICALLY
+        checkoutCalendar.open();
+    }
+});
 
-        document.getElementById("continueBtn").onclick = () => {
-            const params = new URLSearchParams({
-                check_in: checkinDate.toISOString().split("T")[0],
-                check_out: checkoutDate.toISOString().split("T")[0],
-            });
+const checkoutCalendar = flatpickr("#checkout", {
+    minDate: "today",
+    onChange: function(selectedDates) {
+        checkoutDate = selectedDates[0];
 
-            window.location.href = `/booking/{{ room.id }}/?${params}`;
-        };
+        if (checkinDate && checkoutDate) {
+            document.getElementById("continueBtn").disabled = false;
+        }
+    }
+});
+
+// 🔑 OPEN CHECK-IN WHEN MODAL OPENS
+document.getElementById("checkAvailability").onclick = () => {
+    calendarWrapper.classList.remove("hidden");
+
+    // Small delay ensures modal is visible
+    setTimeout(() => {
+        checkinCalendar.open();
+    }, 100);
+};
+
+// Redirect
+document.getElementById("continueBtn").onclick = () => {
+    const params = new URLSearchParams({
+        check_in: checkinDate.toISOString().split("T")[0],
+        check_out: checkoutDate.toISOString().split("T")[0],
+    });
+
+    window.location.href = `/booking/{{ room.id }}/?${params}`;
+};
+
+
+const closeModal = document.getElementById("close-modal");
+
+function closeCalendar() {
+    calendarWrapper.classList.add("hidden");
+}
+
+closeModal.addEventListener("click", function (e) {
+
+    if (e.target === closeModal) {
+        closeCalendar();
+    }
+});
+
+
 </script>
+

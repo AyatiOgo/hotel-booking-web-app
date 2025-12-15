@@ -70,15 +70,16 @@
 
             <div class="hidden w-full fixed scroll-0 top-0  h-full bg-black/30" id="calendarWrapper" > 
                 <div class="w-full h-full flex items-center justify-center" >
-                    <div class="bg-white p-10 rounded-md flex flex-col items-center">
+                    <div class="bg-white p-10 rounded-md flex flex-col items-center relative">
                         <h3 class="text-2xl font-bold pb-4"> Check Available Dates </h3>
                         <div>
                             <input type="text" id="checkin" placeholder="Check-in">
                             <input type="text" id="checkout" placeholder="Check-out">
                         </div>
-                        <button id="continueBtn" class="btn btn-success mt-3" disabled>
+                        <button id="continueBtn" class="btn bg-[#F2D9B1] mt-3 text-black" disabled>
                             Continue to booking
                         </button>
+                        <p id="close-modal" class="absolute right-5 top-5 text-2xl">&times;</p>
                     </div>
                 </div>
             </div>

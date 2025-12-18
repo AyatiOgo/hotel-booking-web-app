@@ -66,6 +66,8 @@
                 </div>
             </div>
 
+            {{ disabled_dates|json_script:"disabled-dates-data" }}
+
             <!-- Absolute Box -->
 
             <div class="hidden w-full fixed scroll-0 top-0  h-full bg-black/30" id="calendarWrapper" > 

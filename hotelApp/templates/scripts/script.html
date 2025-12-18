@@ -1,5 +1,6 @@
 <script>  
-  
+
+
 const calendarWrapper = document.getElementById("calendarWrapper");
 
 let checkinDate = null;
@@ -14,8 +15,10 @@ const checkinCalendar = flatpickr("#checkin", {
     onChange: function(selectedDates) {
         checkinDate = selectedDates[0];
 
+         const nextDay = new Date(checkinDate);
+         nextDay.setDate(nextDay.getDate() + 1);
         // Set min checkout date
-        checkoutCalendar.set("minDate", checkinDate);
+        checkoutCalendar.set("minDate", nextDay);
 
         // 🔑 OPEN CHECKOUT AUTOMATICALLY
         checkoutCalendar.open();
@@ -66,7 +69,6 @@ closeModal.addEventListener("click", function (e) {
         closeCalendar();
     }
 });
-
 
 </script>
 

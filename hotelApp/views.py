@@ -4,6 +4,7 @@ import calendar
 from datetime import timedelta, datetime
 from django.http import HttpResponse
 from .forms import BookingForm
+import json
 
 # Create your views here.
 def home_view(request):
@@ -29,17 +30,19 @@ def room_availability(request, id):
         check_in__month__lte = month,
         check_out__month__gte = month
     )
-    unavailable_dates = set()
+    unavailable_dates = []
 
     for booking in bookings :
         current_date = booking.check_in
         while current_date <= booking.check_out:
-            unavailable_dates.add(current_date.isoformat())
+            unavailable_dates.append(current_date.isoformat())
             current_date += timedelta(days=1)
 
-    return HttpResponse({
-        "days" : list(unavailable_dates) 
-    })
+    context = {
+        "unavailable_days" : json.dumps(unavailable_dates)
+    }
+    
+    return render(request, "hotel-detail.html", context)
 
 
 def booking_view(request, id):
@@ -52,6 +55,8 @@ def booking_view(request, id):
     room = HotelRoomsModel.objects.get(id=id)
 
     total_night = (check_out_date - check_in_date).days 
+
+    total_days = total_night + 1
 
     room_price = room.room_price
 
@@ -81,5 +86,8 @@ def booking_view(request, id):
         "form" : form,
         "room_price" : room_price,
         "total_price" : total_price,
+        "total_night" : total_night,
+        "total_days" : total_days,
+
     }
     return render(request, "booking.html", context)

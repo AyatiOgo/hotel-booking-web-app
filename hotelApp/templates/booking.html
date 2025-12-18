@@ -1,8 +1,76 @@
 {% extends 'index.html' %}
 {% load static %}
-
+{% load humanize %}
 
 {% block content %}
-<h1>  {{ room.id }} </h1>
+    <div class="w-full bg-[#FBF3E7] h-fill"> 
+        {% include 'components/navbar.html' %}
+
+        <!-- CONTENT CONTAINER -->
+        <div class="w-full flex items-center justify-center">
+            <div class="w-[1000px] py-20 ">
+                <form method="post">
+                <div class="w-full bg-white rounded-2xl flex justify-between p-[40px]">
+                    <div class="w-[50%] pt-4 pr-[16px]">
+                        <h3 class="font-bold text-[18px]"> Booking Form </h3>
+                        <p class="pb-4"> Feel out the neccesary Information </p>
+                        {% csrf_token %}
+                        <!-- Fields Wrap -->
+                        <div class="flex flex-col gap-2">
+                            <div>
+                                <label class="text-[12px]" >Guest Name</label>
+                                {{ form.guest_name }}
+                            </div>
+                            <div>
+                                <label class="text-[12px]" >Guest Email</label>
+                                {{ form.guest_email }}
+                            </div>
+                            <div>
+                                <label class="text-[12px]" >Guest Phone Number</label>
+                                {{ form.guest_phone }}
+                            </div>
+                        </div>
+
+
+                        
+                    </div>
+                    <div class="w-[50%] flex flex-col gap-4" >
+                        <div class="rounded-2xl border border-[#F0F0F0] overflow-hidden">
+                            <h3 class="px-6 py-4 bg-[#FBF3E7]"> Booking Summary </h3>
+                            <div class="pt-2 flex flex-col gap-2">
+                                <div class="px-6">
+                                    <p> Check in: <span class="font-bold">{{ check_in }} </span>  </p>
+                                    <p> Check Out: <span class="font-bold"> {{ check_out }} </span> </p>
+                                </div>
+                                <p class="px-6 bg-[#F5F5F5] py-2 text-[#8F9191]"> Total days: <span class="font-bold"> {{ total_days }} days {{ total_night }} Nights </span> </p>
+                            </div>
+                            <div class="flex justify-between px-6 py-2 border-b border-[#F0F0F0]">
+                                <p> Room </p>
+                                <p class="font-bold"> {{room.room_name}} </p>
+                            </div>
+                            <div class="px-6 py-4 border-b border-[#F0F0F0] border-dashed "> 
+                                <div class="flex justify-between">
+                                    <p> Room Price </p>
+                                    <p class="font-bold"> £ {{ room_price|intcomma }} </p>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p> Nights </p>
+                                    <p class="font-bold"> {{ total_night }} </p>
+                                </div>
+                            </div>
+                            <div class="px-6 py-4">
+                                <div class="flex justify-between">
+                                    <p>Total</p>
+                                    <p> £ {{total_price|intcomma}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    <button type="submit" class="bg-[#F2D9B1] w-full px-4 py-2 rounded-full"> Book Room </button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>    
    
 {% endblock %}

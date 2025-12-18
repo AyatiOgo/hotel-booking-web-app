@@ -16,33 +16,41 @@ def home_view(request):
 
 def room_detail_view(request, slug):
     room = HotelRoomsModel.objects.get(slug = slug)
-    context = {
-        "room" : room
-    }
-    return render(request, "hotel-detail.html", context)
 
-def room_availability(request, id):
-    year = int(request.GET.get)
-    month = int(request.GET.get)
-    room = HotelRoomsModel.objects.get(id=id)
-    bookings = Booking.objects.filter(
-        room = room, 
-        check_in__month__lte = month,
-        check_out__month__gte = month
-    )
+    # check availability
+    bookings = Booking.objects.filter(room = room)
     unavailable_dates = []
 
     for booking in bookings :
         current_date = booking.check_in
         while current_date <= booking.check_out:
-            unavailable_dates.append(current_date.isoformat())
+            unavailable_dates.append(current_date.strftime("%Y-%m-%d"))
             current_date += timedelta(days=1)
 
     context = {
-        "unavailable_days" : json.dumps(unavailable_dates)
+        "room" : room,
+        "unavailable_days" : unavailable_dates,
+        "hello" : "this is a test text"
     }
-    
     return render(request, "hotel-detail.html", context)
+
+# def room_availability(request, id):
+#     room = HotelRoomsModel.objects.get(id=id)
+#     bookings = Booking.objects.filter( room = room)
+#     unavailable_dates = []
+
+#     for booking in bookings :
+#         current_date = booking.check_in
+#         while current_date <= booking.check_out:
+#             unavailable_dates.append(current_date.strftime("%Y-%m-%d"))
+#             current_date += timedelta(days=1)
+
+#     context = {
+#         "unavailable_days" : unavailable_dates,
+#         "hello" : "this is a test text"
+#     }
+    
+#     return render(request, "hotel-detail.html", context)
 
 
 def booking_view(request, id):

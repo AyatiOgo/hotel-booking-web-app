@@ -1,5 +1,8 @@
 <script>  
 
+const disabledDates = JSON.parse(
+        document.getElementById("disabled-dates-data").textContent
+    );
 
 const calendarWrapper = document.getElementById("calendarWrapper");
 
@@ -7,34 +10,51 @@ let checkinDate = null;
 let checkoutDate = null;
 
 // 🔑 STORE INSTANCES
-const checkinCalendar = flatpickr("#checkin", {
-    minDate: "today",
-    onReady: function(selectedDates, dateStr, instance) {
-        // optional: nothing here
-    },
-    onChange: function(selectedDates) {
-        checkinDate = selectedDates[0];
 
-         const nextDay = new Date(checkinDate);
-         nextDay.setDate(nextDay.getDate() + 1);
-        // Set min checkout date
-        checkoutCalendar.set("minDate", nextDay);
 
-        // 🔑 OPEN CHECKOUT AUTOMATICALLY
-        checkoutCalendar.open();
-    }
-});
-
+// Checkout calendar (defined FIRST so we can reference it)
 const checkoutCalendar = flatpickr("#checkout", {
+    dateFormat: "Y-m-d",
     minDate: "today",
-    onChange: function(selectedDates) {
-        checkoutDate = selectedDates[0];
+    disable: disabledDates,
+    onChange: function (selectedDates, dateStr) {
+        checkoutDate = dateStr;
 
         if (checkinDate && checkoutDate) {
             document.getElementById("continueBtn").disabled = false;
         }
     }
 });
+
+const checkinCalendar = flatpickr("#checkin", {
+    dateFormat: "Y-m-d",
+    minDate: "today",
+    disable: disabledDates,
+    onChange: function (selectedDates, dateStr) {
+        checkinDate = dateStr;
+
+        // Enforce minimum 1 night stay (safe way)
+        checkoutCalendar.set(
+            "minDate",
+            selectedDates[0].fp_incr(1)
+        );
+
+        checkoutCalendar.open()
+        // Reset checkout when check-in changes
+        checkoutCalendar.clear();
+        document.getElementById("continueBtn").disabled = true;
+    }
+});
+
+// Continue button
+document.getElementById("continueBtn").onclick = () => {
+    const params = new URLSearchParams({
+        check_in: checkinDate,
+        check_out: checkoutDate,
+    });
+
+    window.location.href = `/booking/{{ room.id }}/?${params}`;
+};
 
 // 🔑 OPEN CHECK-IN WHEN MODAL OPENS
 document.getElementById("checkAvailability").onclick = () => {
@@ -44,18 +64,9 @@ document.getElementById("checkAvailability").onclick = () => {
     setTimeout(() => {
         checkinCalendar.open();
     }, 100);
+
+    checkinCalendar.open()
 };
-
-// Redirect
-document.getElementById("continueBtn").onclick = () => {
-    const params = new URLSearchParams({
-        check_in: checkinDate.toISOString().split("T")[0],
-        check_out: checkoutDate.toISOString().split("T")[0],
-    });
-
-    window.location.href = `/booking/{{ room.id }}/?${params}`;
-};
-
 
 const closeModal = document.getElementById("close-modal");
 

@@ -30,27 +30,10 @@ def room_detail_view(request, slug):
     context = {
         "room" : room,
         "unavailable_days" : unavailable_dates,
-        "hello" : "this is a test text"
     }
     return render(request, "hotel-detail.html", context)
 
-# def room_availability(request, id):
-#     room = HotelRoomsModel.objects.get(id=id)
-#     bookings = Booking.objects.filter( room = room)
-#     unavailable_dates = []
 
-#     for booking in bookings :
-#         current_date = booking.check_in
-#         while current_date <= booking.check_out:
-#             unavailable_dates.append(current_date.strftime("%Y-%m-%d"))
-#             current_date += timedelta(days=1)
-
-#     context = {
-#         "unavailable_days" : unavailable_dates,
-#         "hello" : "this is a test text"
-#     }
-    
-#     return render(request, "hotel-detail.html", context)
 
 
 def booking_view(request, id):

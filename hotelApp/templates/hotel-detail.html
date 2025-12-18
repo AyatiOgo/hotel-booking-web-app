@@ -20,6 +20,7 @@
                         <div class="flex flex-col w-[70%] ">
                             <h1 class="text-[48px] font-bold"> {{ room.room_name }} </h1>
                             <p> {{ room.room_description }} </p>
+                            {{ unavailable_days|json_script:"disabled-dates-data" }}
                         </div>
                         <div class="p-4 flex flex-col bg-[#F5F5F5] w-[30%] h-fit gap-4 rounded-[16px] ">
                             <p class="text-[20px]"> <span class="font-bold"> {{ room.room_no }} </span> rooms available </p>

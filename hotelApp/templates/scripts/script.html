@@ -1,9 +1,9 @@
-<script>  
+<script> 
 
 const disabledDates = JSON.parse(
         document.getElementById("disabled-dates-data").textContent
     );
-
+console.log(disabledDates)
 const calendarWrapper = document.getElementById("calendarWrapper");
 
 let checkinDate = null;
@@ -65,7 +65,6 @@ document.getElementById("checkAvailability").onclick = () => {
         checkinCalendar.open();
     }, 100);
 
-    checkinCalendar.open()
 };
 
 const closeModal = document.getElementById("close-modal");
@@ -81,5 +80,5 @@ closeModal.addEventListener("click", function (e) {
     }
 });
 
-</script>
 
+</script>

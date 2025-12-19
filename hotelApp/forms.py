@@ -13,4 +13,3 @@ class BookingForm(forms.Form):
         "class":"w-full border border-[#F0F0F0] bg-[#F5F5F5] py-2 px-4 rounded-md " ,
         "placeholder":"Input Phone Number",
     }))
-    

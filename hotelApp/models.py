@@ -1,5 +1,6 @@
 from django.db import models
 from autoslug import AutoSlugField
+import uuid
 
 # Create your models here.
 class HotelRoomsModel(models.Model):
@@ -24,7 +25,14 @@ class HotelRoomsModel(models.Model):
 class RoomImages(models.Model):
     room = models.ForeignKey(HotelRoomsModel, related_name="images", on_delete=models.CASCADE )
     images = models.ImageField()
-    
+
+
+STATUS_CHOICES = [
+    ("pending", "pending"),
+    ("confirmed", "confirmed"),
+    ("failed", "failed"),
+]
+
 class Booking(models.Model):
     room = models.ForeignKey(HotelRoomsModel, related_name="bookings", on_delete=models.CASCADE )
     check_in = models.DateField(max_length=50)
@@ -33,3 +41,15 @@ class Booking(models.Model):
     guest_name = models.CharField(max_length=200)
     guest_email = models.EmailField()
     guest_phone = models.CharField(max_length=20)
+    booking_ref = models.CharField(max_length=20, unique=True, blank=True, null=True )
+    status = models.CharField(max_length=40, choices=STATUS_CHOICES, null=True, blank=True, default="pending")
+    payment_refrence = models.CharField(max_length=100, blank=True, null=True, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.booking_ref:
+            self.booking_ref = f"BK{uuid.uuid4().hex[:6].upper()}"
+        super().save(*args, **kwargs)
+    
+    def __str__(self):
+        return self.booking_ref

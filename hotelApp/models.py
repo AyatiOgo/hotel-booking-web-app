@@ -1,8 +1,20 @@
 from django.db import models
 from autoslug import AutoSlugField
 import uuid
-
+from django.contrib.auth.models import AbstractUser
+from booking.settings import AUTH_USER_MODEL
 # Create your models here.
+
+
+class HotelUsers(AbstractUser):
+    full_name = models.CharField(max_length=150)
+    email = models.CharField(max_length=50, unique=True)
+    phone_no = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.full_name
+
+
 class HotelRoomsModel(models.Model):
     room_name = models.CharField(max_length=100)
     slug = AutoSlugField(populate_from='room_name', null=True, blank=True)
@@ -34,6 +46,7 @@ STATUS_CHOICES = [
 ]
 
 class Booking(models.Model):
+    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
     room = models.ForeignKey(HotelRoomsModel, related_name="bookings", on_delete=models.CASCADE )
     check_in = models.DateField(max_length=50)
     check_out = models.DateField(max_length=50)

@@ -1,0 +1,47 @@
+{% load tailwind_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %} Create an Account  {% endblock %}   </title>
+    {% tailwind_css %}
+</head>
+<body class="bg-[#FBF3E7]">
+    <div class="w-full">
+        {% include 'components/navbar.html' %}
+
+        <div class="w-full flex items-center justify-center pt-20 pb-20"> 
+            <div class="w-[1000px] bg-white p-[32px] rounded-2xl">
+                <div class="w-full flex justify-between gap-4 items-stretch">
+                    <div class="w-1/2">
+                        <img src="{% static 'images/form-bg.png' %} " class="w-full h-[400px]  rounded-2xl " alt="form-bg" >
+                    </div>
+                    
+                    <div class="w-[50%] flex flex-col gap-4">  
+                        {% block content %} 
+                        <div>
+                            <h2 class="font-semibold text-[18px]"> Sign Up</h2>
+                            <p> Create an account today! </p>
+                        </div>
+                        
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="flex flex-col gap-2">
+                                {{ form.as_p }}
+                                <button type="submit" class="bg-[#F2D9B1] w-full px-4 py-2 rounded-full"> Create Account</button>
+                                
+                            </div>
+                        </form>
+                         <span class="flex flex-row  w-full gap-1 justify-center"> <p> Already have an account?</p> <a href="{% url 'login' %}" class="font-semibold"> Login  </a> </span>
+                       {% endblock %}
+                    </div>
+                     
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

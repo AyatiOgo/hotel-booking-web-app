@@ -3,12 +3,19 @@ from .models import HotelRoomsModel, Booking
 import calendar
 from datetime import timedelta, datetime
 from django.http import HttpResponse
-from .forms import BookingForm
+from .forms import BookingForm, RegistrationForm, UserLoginForm
 import json
 from paystackapi.paystack import Paystack
 from paystackapi.transaction import Transaction
 from booking.settings import PAYSTACK_SECRET_KEY
+from booking.settings import BASE_DIR
 from django.urls import reverse
+from weasyprint import HTML, CSS
+from django.template.loader import render_to_string
+import os
+from django.contrib.auth import login, logout
+
+
 
 
 paystack = Paystack(secret_key=PAYSTACK_SECRET_KEY)
@@ -16,8 +23,11 @@ paystack = Paystack(secret_key=PAYSTACK_SECRET_KEY)
 # Create your views here.
 def home_view(request):
     rooms = HotelRoomsModel.objects.all()
+    user = request.user
     context = {
-        "rooms" : rooms
+        "rooms" : rooms,
+        "user" : user,
+
     }
     return render(request, "index.html", context)
 
@@ -53,6 +63,7 @@ def booking_view(request, id):
         form = BookingForm(request.POST)
         if form.is_valid():
             booking = Booking.objects.create(
+                user = request.user if request.user.is_authenticated else None,
                 room = room,
                 check_in = check_in,
                 check_out = check_out,
@@ -64,7 +75,14 @@ def booking_view(request, id):
 
             return redirect("initiate-payment", id=booking.id)
     else:
-        form = BookingForm()
+        if request.user.is_authenticated :
+            form = BookingForm(initial= {
+               "guest_name": request.user.full_name,
+               "guest_email": request.user.email,
+               "guest_phone": request.user.phone_no,
+            }  )
+        else:
+            form = BookingForm()
 
     context = {
         "room" : room,
@@ -112,15 +130,68 @@ def payment_callback(request):
     if status == "success":
         booking.status = "confirmed"
         booking.save()
-        return redirect("payment-success")
+        return redirect("payment-success", ref = booking.booking_ref)
 
     else:
         booking.status = "failed"
         booking.save()
         return redirect("payment-failed")
 
-def success_view(request):
-    return render(request, "success.html")
+def success_view(request, ref):
+    booking = Booking.objects.get(booking_ref=ref)
+
+    context= {
+        "booking" : booking,
+    }
+    return render(request, "success.html", context)
 
 def failure_view(request):
     return render(request, "success.html")
+
+def download_page(request):
+    html_string = render_to_string(
+        "success.html"
+    )
+    pdf = HTML(
+        string=html_string,
+        base_url=request.build_absolute_uri()
+    ).write_pdf()
+    css_path = os.path.join(BASE_DIR, "static/css/dist/styles.css")
+    response = HttpResponse(pdf, content_type="application/pdf")
+    response["Content-Disposition"] = (
+        f'attachment; filename="booking.pdf"'
+    )
+
+    HTML(string=html_string).write_pdf(
+        response,
+        stylesheets=[CSS(filename=css_path)]
+    )
+
+    return response
+
+def registration_view(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("home")
+    else:
+        form = RegistrationForm()
+    
+    return render(request, "signup.html", {'form' : form })
+
+def loginUser_view(request):
+    if request.method == 'POST':
+        form = UserLoginForm( request, data= request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect("home")
+    else:
+        form = UserLoginForm()
+    return render(request, "login.html", {'form' : form})
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')

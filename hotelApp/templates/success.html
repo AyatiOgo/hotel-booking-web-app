@@ -1,9 +1,58 @@
 {% extends 'index.html' %}
-
+{% load static %}
 {% block content %}
-    <div class="bg-green-100">
-     <h2 class="text-2xl text-green-600"> Payment Succesfull </h2>
+{% load humanize %}
+    <div class="w-full bg-[#FBF3E7] flex justify-center items-center h-dvh">
+
+        <!-- CONTENT CONTAINER -->
+        <div class="w-full flex items-center justify-center pt-10">
+            <div class="w-[408px] flex flex-col  bg-white p-4 rounded-2xl gap-4" > 
+                <div class="w-full flex items-center bg-[#E6F3E7] justify-center rounded-2xl flex-col p-4 gap-2">
+                    <span class="flex flex-row gap-2 pb-2 border-b border-[#8AC68E]"> 
+                        <img src="{% static 'icons/green-check.svg' %}"></img> 
+                         <h2 class="text-[18px] font-semibold text-[#007609]"> Booking Successful</h2>
+                    </span> 
+                    <h3 class=" font-bold text-2xl"> {{ booking.booking_ref }} </h3>
+                </div>
+                <div class="w-full flex flex-col gap-2 ">
+                    <div class="w-full flex justify-between"> 
+                        <p> Room Name</p>
+                        <p> {{ booking.room.room_name }}</p>
+                    </div>
+                    <div class="w-full flex justify-between"> 
+                        <p> Booking Ref </p>
+                        <p> {{ booking.booking_ref }} </p>
+                    </div>
+                    <div class="w-full flex justify-between"> 
+                        <p>Guest Name</p>
+                        <p> {{ booking.guest_name }}</p>
+                    </div>
+                    <div class="w-full flex justify-between"> 
+                        <p> Check In </p>
+                        <p> {{ booking.check_in }}</p>
+                    </div>
+                    <div class="w-full flex justify-between"> 
+                        <p> Check Out </p>
+                        <p> {{ booking.check_out }} </p>
+                    </div>
+                    <div class="w-full flex justify-between"> 
+                        <p> Total Days </p>
+                        <p> 2 days 1 night </p>
+                    </div>
+                    <div class="w-full flex justify-between"> 
+                        <p> Amount </p>
+                        <p> £ {{ booking.amount|intcomma }}</p>
+                    </div>
+                    <div class="w-full flex justify-between"> 
+                        <p> Status </p>
+                        <p> {{ booking.status }} </p>
+                    </div>
+                    <a class="w-full p-4 font-semibold bg-[#F2D9B1] rounded-2xl flex justify-center items-center" href="{% url 'download_page' %}"> Download confirmation </a>
+                </div>
+            </div>
+        </div>
+     
+
     </div>
-    <a href="{% url 'home' %}"> go home </a>
 {% endblock %}
 

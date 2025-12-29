@@ -1,0 +1,27 @@
+{% extends 'signup.html' %}
+{% load tailwind_tags %}
+{% load static %}
+
+
+{% block content %}
+<div>
+    <h2 class="font-semibold text-[18px]"> Login Up</h2>
+    <p> Login Into your account </p>
+</div>
+
+<form method="post">
+{% csrf_token %}
+<div class="flex flex-col gap-2">
+    <div>
+        <label class="text-[12px]"> Email </label>
+        {{ form.username }}
+    </div>
+    <div>
+        <label class="text-[12px]"> Password </label>
+        {{ form.password }}
+    </div>
+    <button type="submit" class="bg-[#F2D9B1] w-full px-4 py-2 rounded-full"> Create Account</button>
+    <span class=" w-full items-center justify-center flex flex-row gap-1"> <p> Don't an have account </p> <a href="{% url 'create-account' %}" class="font-semibold"> signup </a>  </span>
+</div>
+</form>
+{% endblock %}

@@ -57,6 +57,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'hotelApp.backends.UsernameOrEmailLogin',  
+    'django.contrib.auth.backends.ModelBackend', 
+]
+
 ROOT_URLCONF = 'booking.urls'
 
 TEMPLATES = [
@@ -106,6 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'hotelApp.HotelUsers'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/

@@ -5,15 +5,24 @@
     <div class=" bg-white w-[1300px] rounded-full">
         <div class="w-full flex justify-between py-4 px-8 "> 
             <a href="{% url 'home' %}">   <img src="{% static 'images/hotel-logo.svg' %}" alt="" srcset=""> </a>
-          
-
             <div class="flex flex-row items-center gap-4 "> 
                 <p> Rooms </p>
                 <p> About us </p>
-                <p> Bookings </p>
                 <p> Gallery </p>
                 <p> Contact Us </p>
+
+                {% if user.is_authenticated %}
+                <p> Bookings </p>
+                <div class="px-4 py-2 bg-[#F2D9B1] font-semibold text-black flex flex-row rounded-full gap-2">
+                <img src="{% static 'icons/acc-icon.svg' %}" alt="" srcset="">
+                <p> {{ user.username }}</p>
+                </div>
+
+                {% else %}
+
                 <button class="px-4 py-2 bg-[#F2D9B1] font-semibold text-black rounded-md"> View Rooms </button>
+
+                {% endif %}
             </div>
         </div>
     </div>

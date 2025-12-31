@@ -15,6 +15,7 @@ from django.template.loader import render_to_string
 import os
 from django.contrib.auth import login, logout
 from django.core.mail import EmailMessage
+from booking.settings import EMAIL_HOST_USER
 
 paystack = Paystack(secret_key=PAYSTACK_SECRET_KEY)
 
@@ -128,7 +129,15 @@ def payment_callback(request):
     if status == "success":
         booking.status = "confirmed"
         booking.save()
-
+        html_message = render_to_string('success-email.html', {'booking':booking})
+        email = EmailMessage(
+            subject= "Booking Succesful!🎉🏚️",
+            body = html_message,
+            from_email= EMAIL_HOST_USER,
+            to= [booking.guest_email],
+        )
+        email.content_subtype = 'HTML'
+        email.send(fail_silently=False)
         return redirect("payment-success", ref = booking.booking_ref)
 
     else:
@@ -215,5 +224,11 @@ def booking_details(request, ref):
     context = {
         "booking" : booking
     }
-
     return render(request, "booking-details.html", context)
+
+def emailview(request, ref):
+    booking = Booking.objects.get(booking_ref= ref)
+    context = {
+    "booking":booking
+    }
+    return render(request, "success-email.html", context)

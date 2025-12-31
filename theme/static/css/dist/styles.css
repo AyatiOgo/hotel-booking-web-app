@@ -720,6 +720,12 @@
   .w-\[80px\] {
     width: 80px;
   }
+  .w-\[200px\] {
+    width: 200px;
+  }
+  .w-\[300px\] {
+    width: 300px;
+  }
   .w-\[400px\] {
     width: 400px;
   }
@@ -746,6 +752,9 @@
   }
   .flex-row {
     flex-direction: row;
+  }
+  .content-center {
+    align-content: center;
   }
   .items-center {
     align-items: center;
@@ -985,6 +994,12 @@
     font-size: var(--text-5xl);
     line-height: var(--tw-leading, var(--text-5xl--line-height));
   }
+  .text-\[2rem\] {
+    font-size: 2rem;
+  }
+  .text-\[3rem\] {
+    font-size: 3rem;
+  }
   .text-\[4rem\] {
     font-size: 4rem;
   }
@@ -1059,6 +1074,36 @@
   }
   .text-white {
     color: var(--color-white);
+  }
+  @media (width >= 40rem) {
+    .sm\:h-\[40rem\] {
+      height: 40rem;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:w-\[400px\] {
+      width: 400px;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:flex-row {
+      flex-direction: row;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:px-0 {
+      padding-inline: calc(var(--spacing) * 0);
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:text-\[4rem\] {
+      font-size: 4rem;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:text-\[6rem\] {
+      font-size: 6rem;
+    }
   }
 }
 @layer base {

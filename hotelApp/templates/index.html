@@ -17,20 +17,20 @@
 
     {% block content %}
     <!-- Hero Section -->
-    <div class="h-[40rem] bg-no-repeat bg-cover" style="background-image: url('{% static 'images/hero-img.jpg' %}')"> 
+    <div class="sm:h-[40rem] h-fit bg-no-repeat bg-cover" style="background-image: url('{% static 'images/hero-img.jpg' %}')"> 
         {% include 'components/navbar.html' %}
 
-        <div class="w-full py-24 flex flex-col items-center">
-        <h1 class="font-olivera text-[6rem] leading-none text-white"> Elevate Your Stay </h1>
-        <p class="font-olivera text-3xl leading-none text-white pt-[-16px]"> Discover the Art of Fine Living </p>
-        <button class="px-4 py-2 bg-[#F2D9B1] font-semibold text-black rounded-md mt-4 cursor-pointer"> View Rooms </button>
+        <div class="w-full py-24 flex flex-col items-center sm:px-0 px-4">
+            <h1 class="font-olivera text-[4rem] sm:text-[6rem] leading-none text-white"> Elevate Your Stay </h1>
+            <p class="font-olivera text-3xl leading-none text-white pt-[-16px]"> Discover the Art of Fine Living </p>
+            <button class="px-4 py-2 bg-[#F2D9B1] font-semibold text-black rounded-md mt-4 cursor-pointer"> View Rooms </button>
         </div>
     </div>
     <!-- Room Section -->
      <div class="w-full bg-[#F2D9B1] flex items-center justify-center py-[40px]">
         <div class="w-[1300px] flex items-center justify-center flex-col gap-8">
-            <h2 class="font-olivera text-[4rem] w-[400px] text-center leading-none "> Rooms Structured for your comfort </h2>
-            <div class="w-full flex flex-row  gap-4 " > 
+            <h2 class="font-olivera text-[3rem]  sm:text-[4rem] w-[300px] sm:w-[400px] text-center leading-none "> Rooms Structured for your comfort </h2>
+            <div class="w-full flex flex-col sm:flex-row  gap-4 px-4 sm:px-0 " > 
             {% for room in rooms %}
                 <div class="w-full rounded-2xl overflow-hidden h-fit">
                     <img src="{{ room.room_image }}" alt="" class="h-[258px] w-full object-cover ">
@@ -47,7 +47,7 @@
                                 <i title="Pool"> <img src="{% static 'icons/pool-icon.svg' %}" alt="size-icon" > </i>
                                 <i title="Meals"> <img src="{% static 'icons/food-icon.svg' %}" alt="size-icon" ></i>
                             </div>
-                        </div>
+                        </div> 
                         
                     </div>
                 </div>

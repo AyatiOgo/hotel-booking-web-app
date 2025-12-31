@@ -1,0 +1,116 @@
+{% load static %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Template</title>
+</head>
+
+<body style="margin:0; padding:0; background-color:#FBF3E7; font-family:Arial, Helvetica, sans-serif;">
+
+<!-- Wrapper Table -->
+<table width="100%" cellpadding="0" cellspacing="0" style="background-color:#FBF3E7; min-width:320px;">
+  <tr>
+    <td align="center" style="padding:20px 10px;">
+
+      <!-- Card Table -->
+      <table width="408" cellpadding="0" cellspacing="0"
+             align="center"
+             style="max-width:408px; width:100%; background-color:#ffffff; border-radius:16px; padding:16px; margin:0 auto;">
+
+        <!-- Success Box -->
+        <tr>
+          <td style="background-color:#E6F3E7; padding:16px; border-radius:16px; text-align:center;">
+
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td align="center" style="padding-bottom:8px; border-bottom:1px solid #8AC68E;">
+                 
+                  <span style="font-size:18px; font-weight:600; color:#007609; margin-left:6px; vertical-align:middle;">
+                    Booking Successful
+                  </span>
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin:8px 0 0; font-size:24px; font-weight:700; color:#000;">
+              {{ booking.booking_ref }}
+            </p>
+
+          </td>
+        </tr>
+
+        <tr><td height="16"></td></tr>
+
+        <!-- Booking Details -->
+        <tr>
+          <td align="center" style="padding:0;">
+
+            <table width="100%" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto;">
+
+              <tr>
+                <td style="padding:6px 0; color:#555;">Room Name</td>
+                <td align="right" style="padding:6px 0; color:#000;">{{ booking.room.room_name }}</td>
+              </tr>
+
+              <tr>
+                <td style="padding:6px 0; color:#555;">Booking Ref</td>
+                <td align="right" style="padding:6px 0; color:#000;">{{ booking.booking_ref }}</td>
+              </tr>
+
+              <tr>
+                <td style="padding:6px 0; color:#555;">Guest Name</td>
+                <td align="right" style="padding:6px 0; color:#000;">{{ booking.guest_name }}</td>
+              </tr>
+
+              <tr>
+                <td style="padding:6px 0; color:#555;">Check In</td>
+                <td align="right" style="padding:6px 0; color:#000;">{{ booking.check_in }}</td>
+              </tr>
+
+              <tr>
+                <td style="padding:6px 0; color:#555;">Check Out</td>
+                <td align="right" style="padding:6px 0; color:#000;">{{ booking.check_out }}</td>
+              </tr>
+
+              <tr>
+                <td style="padding:6px 0; color:#555;">Total Days</td>
+                <td align="right" style="padding:6px 0; color:#000;">2 days 1 night</td>
+              </tr>
+
+              <tr>
+                <td style="padding:6px 0; color:#555;">Amount</td>
+                <td align="right" style="padding:6px 0; color:#000;">£ {{ booking.amount|intcomma }}</td>
+              </tr>
+
+              <tr>
+                <td style="padding:6px 0; color:#555;">Status</td>
+                <td align="right" style="padding:6px 0; color:#000;">{{ booking.status }}</td>
+              </tr>
+
+            </table>
+
+          </td>
+        </tr>
+
+        <tr><td height="16"></td></tr>
+
+        <!-- Small Text / Note -->
+        <tr>
+          <td style="background-color:#F0F0F0; padding:12px; border-radius:16px; text-align:center; font-size:13px; color:#333;">
+            Thank you for your booking. This email confirms that your reservation has been successfully completed.
+          </td>
+        </tr>
+
+      </table>
+      <!-- End Card Table -->
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

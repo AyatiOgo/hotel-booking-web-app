@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% load humanize %}
+    <div class="w-full bg-[#FBF3E7]  justify-center  h-dvh ">
+        {% include 'components/navbar.html' %}
+        <!-- CONTENT CONTAINER -->
+        <div class="w-full flex items-center justify-center pt-20 flex-col gap-4">
+            <div class="flex flex-col gap-2 justify-center items-center">
+                <h2 class="text-2xl font-bold"> Booking Details </h2>
+                <p> Input your booking ref to see your booking details </p>
+            </div>
+
+            <div class="w-[408px] flex flex-col  bg-white p-4 rounded-2xl gap-4" > 
+                <div class="w-full flex flex-col gap-2 ">
+                    <div class="w-full flex "> 
+                        <form method="post"  class="w-full flex flex-col gap-2">
+                            {% csrf_token %}
+                            {{ form.booking_ref }}
+                            <button type="submit" class="w-full p-4 font-semibold bg-[#F2D9B1] rounded-2xl flex justify-center items-center"> Check Booking </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+
+    </div>
+{% endblock %}
+

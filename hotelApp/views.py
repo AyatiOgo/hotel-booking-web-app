@@ -3,7 +3,7 @@ from .models import HotelRoomsModel, Booking
 import calendar
 from datetime import timedelta, datetime
 from django.http import HttpResponse
-from .forms import BookingForm, RegistrationForm, UserLoginForm
+from .forms import BookingForm, RegistrationForm, UserLoginForm, FindBookingForm
 import json
 from paystackapi.paystack import Paystack
 from paystackapi.transaction import Transaction
@@ -14,9 +14,6 @@ from weasyprint import HTML, CSS
 from django.template.loader import render_to_string
 import os
 from django.contrib.auth import login, logout
-
-
-
 
 paystack = Paystack(secret_key=PAYSTACK_SECRET_KEY)
 
@@ -195,3 +192,26 @@ def loginUser_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+
+def find_booking_view(request):
+    if request.method == "POST" :
+        form = FindBookingForm(request.POST)
+        if form.is_valid():
+            input_ref = form.cleaned_data["booking_ref"]
+            booking = Booking.objects.get(booking_ref = input_ref)
+            if booking:
+                return redirect("booking-details", ref=input_ref )
+    else:
+        form = FindBookingForm()
+
+    return render(request, "find-booking.html", {"form": form})
+
+
+def booking_details(request, ref):
+    booking = Booking.objects.get(booking_ref = ref)
+    context = {
+        "booking" : booking
+    }
+
+    return render(request, "booking-details.html", context)

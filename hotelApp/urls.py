@@ -14,5 +14,7 @@ urlpatterns = [
    path('create-account/', registration_view, name="create-account"),
    path('login/', loginUser_view, name="login"),
    path('logout/', logout_view, name="logout"),
+   path('booking/check-booking/', find_booking_view, name="check-booking"),
+   path('booking/details/<str:ref>', booking_details, name="booking-details"),
    
 ]

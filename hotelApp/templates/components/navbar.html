@@ -7,12 +7,13 @@
             <a href="{% url 'home' %}">   <img src="{% static 'images/hotel-logo.svg' %}" alt="" srcset=""> </a>
             <div class="flex flex-row items-center gap-4 "> 
                 <p> Rooms </p>
+                <a href="{% url 'check-booking' %}"> Check Bookings </a>
                 <p> About us </p>
                 <p> Gallery </p>
                 <p> Contact Us </p>
 
                 {% if user.is_authenticated %}
-                <p> Bookings </p>
+               <a href="{% url 'logout' %}">  <div class="px-4 py-2 rounded-md bg-gray-200">  Logout  </div></a>
                 <div class="px-4 py-2 bg-[#F2D9B1] font-semibold text-black flex flex-row rounded-full gap-2">
                 <img src="{% static 'icons/acc-icon.svg' %}" alt="" srcset="">
                 <p> {{ user.username }}</p>

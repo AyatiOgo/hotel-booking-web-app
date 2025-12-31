@@ -17,6 +17,8 @@
     --color-red-100: oklch(93.6% 0.032 17.717);
     --color-red-600: oklch(57.7% 0.245 27.325);
     --color-gray-50: oklch(98.5% 0.002 247.839);
+    --color-gray-200: oklch(92.8% 0.006 264.531);
+    --color-gray-400: oklch(70.7% 0.022 261.325);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -834,8 +836,14 @@
   .bg-\[\#F5F5F5\] {
     background-color: #F5F5F5;
   }
+  .bg-\[\#FBEAE8\] {
+    background-color: #FBEAE8;
+  }
   .bg-\[\#FBF3E7\] {
     background-color: #FBF3E7;
+  }
+  .bg-\[\#FFF9E6\] {
+    background-color: #FFF9E6;
   }
   .bg-black\/30 {
     background-color: color-mix(in srgb, #000 30%, transparent);
@@ -847,6 +855,12 @@
   }
   .bg-gray-50 {
     background-color: var(--color-gray-50);
+  }
+  .bg-gray-200 {
+    background-color: var(--color-gray-200);
+  }
+  .bg-gray-400 {
+    background-color: var(--color-gray-400);
   }
   .bg-red-100 {
     background-color: var(--color-red-100);
@@ -890,6 +904,9 @@
   .px-8 {
     padding-inline: calc(var(--spacing) * 8);
   }
+  .py-1 {
+    padding-block: calc(var(--spacing) * 1);
+  }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
   }
@@ -904,6 +921,15 @@
   }
   .py-24 {
     padding-block: calc(var(--spacing) * 24);
+  }
+  .py-\[2px\] {
+    padding-block: 2px;
+  }
+  .py-\[4px\] {
+    padding-block: 4px;
+  }
+  .py-\[8px\] {
+    padding-block: 8px;
   }
   .py-\[40px\] {
     padding-block: 40px;
@@ -1007,14 +1033,23 @@
       --alert-color: var(--color-info);
     }
   }
+  .text-\[\#8A6D01\] {
+    color: #8A6D01;
+  }
   .text-\[\#8F9191\] {
     color: #8F9191;
   }
   .text-\[\#9fa0a0\] {
     color: #9fa0a0;
   }
+  .text-\[\#004806\] {
+    color: #004806;
+  }
   .text-\[\#007609\] {
     color: #007609;
+  }
+  .text-\[\#78170F\] {
+    color: #78170F;
   }
   .text-black {
     color: var(--color-black);

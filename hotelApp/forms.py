@@ -2,9 +2,6 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import HotelUsers
 
-
-
-
 class BookingForm(forms.Form):
     guest_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
         "class":"w-full border border-[#F0F0F0] bg-[#F5F5F5] py-2 px-4 rounded-md " ,
@@ -20,7 +17,6 @@ class BookingForm(forms.Form):
     }))
 
 class RegistrationForm(UserCreationForm):
-
     username = forms.CharField(max_length=100, widget= forms.TextInput(attrs={
         "class":"w-full border border-[#F0F0F0] bg-[#F5F5F5] py-2 px-4 rounded-md ",
         "placeholder" : "Input Username"
@@ -75,3 +71,9 @@ class UserLoginForm(AuthenticationForm):
         Model = HotelUsers
         fields = ["username", "password"]
 
+class FindBookingForm(forms.Form):
+
+    booking_ref = forms.CharField(max_length=300, widget= forms.TextInput(attrs={
+        "class" : "w-full border border-[#F0F0F0] bg-[#F5F5F5] py-2 px-4 rounded-md ",
+        "placeholder": "Input Booking Ref"
+    }) )

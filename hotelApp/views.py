@@ -14,6 +14,7 @@ from weasyprint import HTML, CSS
 from django.template.loader import render_to_string
 import os
 from django.contrib.auth import login, logout
+from django.core.mail import EmailMessage
 
 paystack = Paystack(secret_key=PAYSTACK_SECRET_KEY)
 
@@ -127,6 +128,7 @@ def payment_callback(request):
     if status == "success":
         booking.status = "confirmed"
         booking.save()
+
         return redirect("payment-success", ref = booking.booking_ref)
 
     else:

@@ -10,7 +10,6 @@ from paystackapi.transaction import Transaction
 from booking.settings import PAYSTACK_SECRET_KEY
 from booking.settings import BASE_DIR
 from django.urls import reverse
-from weasyprint import HTML, CSS
 from django.template.loader import render_to_string
 import os
 from django.contrib.auth import login, logout

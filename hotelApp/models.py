@@ -18,7 +18,7 @@ class HotelUsers(AbstractUser):
 class HotelRoomsModel(models.Model):
     room_name = models.CharField(max_length=100)
     slug = AutoSlugField(populate_from='room_name', null=True, blank=True)
-    room_image = models.ImageField(null=True, blank=True, upload_to="media/")
+    room_image = models.ImageField(null=True, blank=True, upload_to="media")
     room_description = models.TextField(max_length=2000)
     room_no = models.IntegerField()
     room_price = models.IntegerField()

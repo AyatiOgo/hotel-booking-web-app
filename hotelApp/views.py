@@ -156,26 +156,7 @@ def success_view(request, ref):
 def failure_view(request):
     return render(request, "success.html")
 
-def download_page(request):
-    html_string = render_to_string(
-        "success.html"
-    )
-    pdf = HTML(
-        string=html_string,
-        base_url=request.build_absolute_uri()
-    ).write_pdf()
-    css_path = os.path.join(BASE_DIR, "static/css/dist/styles.css")
-    response = HttpResponse(pdf, content_type="application/pdf")
-    response["Content-Disposition"] = (
-        f'attachment; filename="booking.pdf"'
-    )
 
-    HTML(string=html_string).write_pdf(
-        response,
-        stylesheets=[CSS(filename=css_path)]
-    )
-
-    return response
 
 def registration_view(request):
     if request.method == 'POST':

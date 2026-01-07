@@ -10,7 +10,6 @@ urlpatterns = [
    path('payment-success/<str:ref>', success_view, name="payment-success" ),
    path('payment-failed/', failure_view, name="payment-failed" ),
    path('payment/callback', payment_callback, name="payment_callback"),
-   path('booking/download/', download_page, name="download_page"),
    path('create-account/', registration_view, name="create-account"),
    path('login/', loginUser_view, name="login"),
    path('logout/', logout_view, name="logout"),

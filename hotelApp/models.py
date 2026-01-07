@@ -3,6 +3,7 @@ from autoslug import AutoSlugField
 import uuid
 from django.contrib.auth.models import AbstractUser
 from booking.settings import AUTH_USER_MODEL
+from cloudinary.models import CloudinaryField
 # Create your models here.
 
 
@@ -18,7 +19,7 @@ class HotelUsers(AbstractUser):
 class HotelRoomsModel(models.Model):
     room_name = models.CharField(max_length=100)
     slug = AutoSlugField(populate_from='room_name', null=True, blank=True)
-    room_image = models.ImageField(null=True, blank=True, upload_to="media")
+    room_image = CloudinaryField('image', null=True, blank=True, )
     room_description = models.TextField(max_length=2000)
     room_no = models.IntegerField()
     room_price = models.IntegerField()

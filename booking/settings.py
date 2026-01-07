@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'hotelApp',
     'tailwind',
     'theme',
-     'django.contrib.humanize',
+    'django.contrib.humanize',
+    'cloudinary', 
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -166,3 +168,12 @@ EMAIL_USE_SSL = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFUALT_FROM_EMAIL = EMAIL_HOST_USER
+
+# STORAGE
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": os.getenv('CLOUD_NAME'),
+    "API_KEY": os.getenv('API_KEY'),
+    "API_SECRET": os.getenv('API_SECRET'),
+}

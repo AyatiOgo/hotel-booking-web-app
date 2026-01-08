@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import cloudinary
 
 load_dotenv()
 
@@ -172,8 +173,9 @@ DEFUALT_FROM_EMAIL = EMAIL_HOST_USER
 # STORAGE
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
-CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": os.getenv('CLOUD_NAME'),
-    "API_KEY": os.getenv('API_KEY'),
-    "API_SECRET": os.getenv('API_SECRET'),
-}
+
+cloudinary.config(
+    cloud_name = os.getenv('CLOUD_NAME'),
+    api_key = os.getenv('API_KEY'),
+    api_secret = os.getenv('API_SECRET'),
+)

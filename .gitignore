@@ -4,4 +4,4 @@ venv/
 
 /static/
 
-vercel.json
+.json

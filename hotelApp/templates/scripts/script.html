@@ -67,6 +67,16 @@ document.getElementById("checkAvailability").onclick = () => {
 
 };
 
+document.getElementById("checkAvailability2").onclick = () => {
+    calendarWrapper.classList.remove("hidden");
+
+    // Small delay ensures modal is visible
+    setTimeout(() => {
+        checkinCalendar.open();
+    }, 100);
+
+};
+
 const closeModal = document.getElementById("close-modal");
 
 function closeCalendar() {

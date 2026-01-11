@@ -8,17 +8,17 @@
     <div class="w-full bg-[#FBF3E7] h-auto"> 
         {% include 'components/navbar.html' %}
         <!-- CONTENT CONTAINER -->
-        <div class=" w-full flex justify-center items-center pt-10 flex-col px-4 ">
-            <div class="w-full  sm:w-[1300px] flex items-center pt-24"> 
+        <div class=" w-full flex justify-center items-center pt-10 pb-10 flex-col px-4 ">
+            <div class="w-full  sm:w-[1300px] flex items-center pt-24 sm:pt-0"> 
 
-                <div class="w-full flex flex-col p-4 sm:p-8 bg-white rounded-[40px] gap-8">
+                <div class="w-full flex flex-col p-4 sm:p-8 bg-white rounded-[40px] gap-4 sm:gap-8">
                      <!-- ROOM IMAGE -->
                     <img src="{{ room.room_image.url }}" alt="{{ room.room_name }}" class="w-full sm:h-[495px] object-cover rounded-[24px]"  >
                     
                     <!-- ROOM DETAILS -->
                     <div class="w-full flex flex-col sm:flex-row justify-between gap-4">
                         <div class="flex flex-col w-full sm:w-[70%] ">
-                            <h1 class="text-[48px] font-bold"> {{ room.room_name }} </h1>
+                            <h1 class="text-[32px] sm:text-[48px] font-bold"> {{ room.room_name }} </h1>
                             <p> {{ room.room_description }} </p>
                             {{ unavailable_days|json_script:"disabled-dates-data" }}
                         </div>
@@ -67,8 +67,13 @@
                 </div>
             </div>
 
+    <div class="p-4 sm:hidden fixed bottom-0 flex flex-col bg-[#F5F5F5] w-full sm:w-[30%] h-fit gap-4 rounded-[16px] ">
+        <!-- <input id="checkin" class="border p-2"> -->
+        <button class="bg-[#F2D9B1] py-3 px-8 text-[20px] font-bold rounded-full" id="checkAvailability2"> Check Availabilty  </button>
+    </div>
 
             <!-- Absolute Box -->
+
 
             <div class="hidden w-full fixed scroll-0 top-0  h-full bg-black/30" id="calendarWrapper" > 
                 <div class="w-full h-full flex items-center justify-center" >
@@ -92,6 +97,7 @@
        
 
     </div>
+
 
 
 

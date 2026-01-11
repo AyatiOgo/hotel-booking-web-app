@@ -1954,6 +1954,9 @@
   .right-5 {
     right: calc(var(--spacing) * 5);
   }
+  .bottom-0 {
+    bottom: calc(var(--spacing) * 0);
+  }
   @layer daisyui.l1.l2.l3 {
     .textarea {
       border: var(--border) solid #0000;
@@ -2773,6 +2776,9 @@
   .pb-4 {
     padding-bottom: calc(var(--spacing) * 4);
   }
+  .pb-10 {
+    padding-bottom: calc(var(--spacing) * 10);
+  }
   .pb-20 {
     padding-bottom: calc(var(--spacing) * 20);
   }
@@ -2811,6 +2817,9 @@
   }
   .text-\[20px\] {
     font-size: 20px;
+  }
+  .text-\[24px\] {
+    font-size: 24px;
   }
   .text-\[32px\] {
     font-size: 32px;
@@ -2962,6 +2971,11 @@
     }
   }
   @media (width >= 40rem) {
+    .sm\:gap-8 {
+      gap: calc(var(--spacing) * 8);
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:border-t {
       border-top-style: var(--tw-border-style);
       border-top-width: 1px;
@@ -3007,6 +3021,11 @@
     }
   }
   @media (width >= 40rem) {
+    .sm\:pt-0 {
+      padding-top: calc(var(--spacing) * 0);
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:text-\[4rem\] {
       font-size: 4rem;
     }
@@ -3014,6 +3033,11 @@
   @media (width >= 40rem) {
     .sm\:text-\[6rem\] {
       font-size: 6rem;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:text-\[48px\] {
+      font-size: 48px;
     }
   }
 }

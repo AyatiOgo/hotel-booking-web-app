@@ -13,14 +13,14 @@
     <div class="w-full">
         {% include 'components/navbar.html' %}
 
-        <div class="w-full flex items-center justify-center pt-20 pb-20"> 
-            <div class="w-[1000px] bg-white p-[32px] rounded-2xl">
+        <div class="w-full flex items-center justify-center pt-36 sm:pt-20 pb-20 px-4"> 
+            <div class="w-[1000px] bg-white sm:p-[32px] p-8 rounded-2xl">
                 <div class="w-full flex justify-between gap-4 items-stretch">
-                    <div class="w-1/2">
+                    <div class="w-1/2 hidden sm:block">
                         <img src="{% static 'images/form-bg.png' %} " class="w-full h-[400px]  rounded-2xl " alt="form-bg" >
                     </div>
                     
-                    <div class="w-[50%] flex flex-col gap-4">  
+                    <div class="sm:w-[50%] w-full flex flex-col gap-4">  
                         {% block content %} 
                         <div>
                             <h2 class="font-semibold text-[18px]"> Sign Up</h2>

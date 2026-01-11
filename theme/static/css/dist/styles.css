@@ -2920,6 +2920,11 @@
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
   @media (width >= 40rem) {
+    .sm\:block {
+      display: block;
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:flex {
       display: flex;
     }
@@ -3027,6 +3032,11 @@
   @media (width >= 40rem) {
     .sm\:p-8 {
       padding: calc(var(--spacing) * 8);
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:p-\[32px\] {
+      padding: 32px;
     }
   }
   @media (width >= 40rem) {

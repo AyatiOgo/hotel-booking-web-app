@@ -2395,6 +2395,9 @@
   .flex {
     display: flex;
   }
+  .grid {
+    display: grid;
+  }
   .hidden {
     display: none;
   }
@@ -2532,11 +2535,17 @@
   .resize {
     resize: both;
   }
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
   .flex-col {
     flex-direction: column;
   }
   .flex-row {
     flex-direction: row;
+  }
+  .flex-wrap {
+    flex-wrap: wrap;
   }
   .items-center {
     align-items: center;
@@ -2612,6 +2621,10 @@
   .border-b {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
+  }
+  .border-l {
+    border-left-style: var(--tw-border-style);
+    border-left-width: 1px;
   }
   .border-dashed {
     --tw-border-style: dashed;
@@ -2741,6 +2754,9 @@
   }
   .pt-20 {
     padding-top: calc(var(--spacing) * 20);
+  }
+  .pt-24 {
+    padding-top: calc(var(--spacing) * 24);
   }
   .pt-40 {
     padding-top: calc(var(--spacing) * 40);
@@ -2901,13 +2917,83 @@
     }
   }
   @media (width >= 40rem) {
+    .sm\:h-\[495px\] {
+      height: 495px;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:w-\[30\%\] {
+      width: 30%;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:w-\[70\%\] {
+      width: 70%;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:w-\[80px\] {
+      width: 80px;
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:w-\[400px\] {
       width: 400px;
     }
   }
   @media (width >= 40rem) {
+    .sm\:w-\[1300px\] {
+      width: 1300px;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:w-fit {
+      width: fit-content;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:flex-col {
+      flex-direction: column;
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:flex-row {
       flex-direction: row;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:border-t {
+      border-top-style: var(--tw-border-style);
+      border-top-width: 1px;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:border-r {
+      border-right-style: var(--tw-border-style);
+      border-right-width: 1px;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:border-r-0 {
+      border-right-style: var(--tw-border-style);
+      border-right-width: 0px;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:border-b {
+      border-bottom-style: var(--tw-border-style);
+      border-bottom-width: 1px;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:border-b-0 {
+      border-bottom-style: var(--tw-border-style);
+      border-bottom-width: 0px;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:p-8 {
+      padding: calc(var(--spacing) * 8);
     }
   }
   @media (width >= 40rem) {

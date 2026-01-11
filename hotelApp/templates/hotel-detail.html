@@ -8,21 +8,21 @@
     <div class="w-full bg-[#FBF3E7] h-auto"> 
         {% include 'components/navbar.html' %}
         <!-- CONTENT CONTAINER -->
-        <div class=" w-full flex justify-center items-center pt-10 flex-col">
-            <div class="w-[1300px] flex items-center"> 
+        <div class=" w-full flex justify-center items-center pt-10 flex-col px-4 ">
+            <div class="w-full  sm:w-[1300px] flex items-center pt-24"> 
 
-                <div class="w-full flex flex-col p-8 bg-white rounded-[40px] gap-8">
+                <div class="w-full flex flex-col p-4 sm:p-8 bg-white rounded-[40px] gap-8">
                      <!-- ROOM IMAGE -->
-                    <img src="{{ room.room_image.url }}" alt="{{ room.room_name }}" class="w-full h-[495px] object-cover rounded-[24px]"  >
+                    <img src="{{ room.room_image.url }}" alt="{{ room.room_name }}" class="w-full sm:h-[495px] object-cover rounded-[24px]"  >
                     
                     <!-- ROOM DETAILS -->
-                    <div class="w-full flex justify-between gap-4">
-                        <div class="flex flex-col w-[70%] ">
+                    <div class="w-full flex flex-col sm:flex-row justify-between gap-4">
+                        <div class="flex flex-col w-full sm:w-[70%] ">
                             <h1 class="text-[48px] font-bold"> {{ room.room_name }} </h1>
                             <p> {{ room.room_description }} </p>
                             {{ unavailable_days|json_script:"disabled-dates-data" }}
                         </div>
-                        <div class="p-4 flex flex-col bg-[#F5F5F5] w-[30%] h-fit gap-4 rounded-[16px] ">
+                        <div class="p-4 flex flex-col bg-[#F5F5F5] w-full sm:w-[30%] h-fit gap-4 rounded-[16px] ">
                             <p class="text-[20px]"> <span class="font-bold"> {{ room.room_no }} </span> rooms available </p>
                             <!-- <input id="checkin" class="border p-2"> -->
                             <button class="bg-[#F2D9B1] py-3 px-8 text-[20px] font-bold rounded-full" id="checkAvailability"> Check Availabilty  </button>
@@ -30,36 +30,36 @@
                     </div>
 
                     <!-- ROOM ICONS -->
-                     <div class="flex flex-row w-fit border-t border-b border-[#C1C2C2] ">
-                        <div class="w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-[#C1C2C2] gap-2">
+                     <div class="sm:flex w-full grid grid-cols-3  sm:flex-row sm:w-fit sm:border-t sm:border-b border-[#C1C2C2] ">
+                        <div class="w-full sm:w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-b sm:border-b-0 border-[#C1C2C2] gap-2">
                             <i title="Size"> <img src="{% static 'icons/size-icon.svg' %}" alt="size-icon" > </i>
                             <p class="text-[12px] text-[#9fa0a0]"> {{ room.room_dimension }} </p>
                         </div>
-                        <div class="w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-[#C1C2C2] gap-2">
+                        <div class=" w-full sm:w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-b sm:border-b-0 border-[#C1C2C2] gap-2">
                             <i title="Size"> <img src="{% static 'icons/bulb-icon.svg' %}" alt="size-icon" > </i>
                             <p class="text-[12px] text-[#9fa0a0]"> {{ room.room_dimension }} </p>
                         </div>
-                        <div class="w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-[#C1C2C2] gap-2">
+                        <div class=" w-full sm:w-[80px] h-[80px] flex justify-center flex-col items-center sm:border-r border-b sm:border-b-0 border-[#C1C2C2] gap-2">
                             <i title="Size"> <img src="{% static 'icons/AC-icon.svg' %}" alt="size-icon" > </i>
                             <p class="text-[12px] text-[#9fa0a0]"> {{ room.room_dimension }} </p>
                         </div>
-                        <div class="w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-[#C1C2C2] gap-2">
+                        <div class=" w-full sm:w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-b sm:border-b-0 border-[#C1C2C2] gap-2">
                             <i title="Size"> <img src="{% static 'icons/pool-icon.svg' %}" alt="size-icon" > </i>
                             <p class="text-[12px] text-[#9fa0a0]"> {{ room.room_dimension }} </p>
                         </div>
-                        <div class="w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-[#C1C2C2] gap-2">
+                        <div class=" w-full sm:w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-b sm:border-b-0 border-[#C1C2C2] gap-2">
                             <i title="Size"> <img src="{% static 'icons/food-icon.svg' %}" alt="size-icon" > </i>
                             <p class="text-[12px] text-[#9fa0a0]"> {{ room.room_dimension }} </p>
                         </div>
-                        <div class="w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-[#C1C2C2] gap-2">
+                        <div class="w-full sm:w-[80px] h-[80px] flex justify-center flex-col items-center sm:border-r border-b sm:border-b-0 border-[#C1C2C2] gap-2">
                             <i title="Size"> <img src="{% static 'icons/bed-icon.svg' %}" alt="size-icon" > </i>
                             <p class="text-[12px] text-[#9fa0a0]"> {{ room.room_dimension }} </p>
                         </div>
-                        <div class="w-[80px] h-[80px] flex justify-center flex-col items-center border-r border-[#C1C2C2] gap-2">
+                        <div class="w-full sm:w-[80px] h-[80px] flex justify-center flex-col items-center border-r sm:border-b-0 border-[#C1C2C2] gap-2">
                             <i title="Size"> <img src="{% static 'icons/user-icon.svg' %}" alt="size-icon" > </i>
                             <p class="text-[12px] text-[#9fa0a0]"> {{ room.room_dimension }} </p>
                         </div>
-                        <div class="w-[80px] h-[80px] flex justify-center flex-col items-center  border-[#C1C2C2] gap-2">
+                        <div class="w-full sm:w-[80px] h-[80px] flex justify-center flex-col items-center  border-r sm:border-r-0 sm:border-b-0 border-[#C1C2C2] gap-2">
                             <i title="Size"> <img src="{% static 'icons/bath-icon.svg' %}" alt="size-icon" > </i>
                             <p class="text-[12px] text-[#9fa0a0]"> {{ room.room_dimension }} </p>
                         </div>

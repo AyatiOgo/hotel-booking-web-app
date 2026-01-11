@@ -2761,6 +2761,15 @@
   .pt-24 {
     padding-top: calc(var(--spacing) * 24);
   }
+  .pt-32 {
+    padding-top: calc(var(--spacing) * 32);
+  }
+  .pt-36 {
+    padding-top: calc(var(--spacing) * 36);
+  }
+  .pt-38 {
+    padding-top: calc(var(--spacing) * 38);
+  }
   .pt-40 {
     padding-top: calc(var(--spacing) * 40);
   }
@@ -2936,6 +2945,11 @@
     }
   }
   @media (width >= 40rem) {
+    .sm\:w-\[50\%\] {
+      width: 50%;
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:w-\[70\%\] {
       width: 70%;
     }
@@ -2948,6 +2962,11 @@
   @media (width >= 40rem) {
     .sm\:w-\[400px\] {
       width: 400px;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:w-\[1000px\] {
+      width: 1000px;
     }
   }
   @media (width >= 40rem) {
@@ -3011,6 +3030,11 @@
     }
   }
   @media (width >= 40rem) {
+    .sm\:p-\[40px\] {
+      padding: 40px;
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:px-0 {
       padding-inline: calc(var(--spacing) * 0);
     }
@@ -3023,6 +3047,21 @@
   @media (width >= 40rem) {
     .sm\:pt-0 {
       padding-top: calc(var(--spacing) * 0);
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:pt-20 {
+      padding-top: calc(var(--spacing) * 20);
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:pr-\[16px\] {
+      padding-right: 16px;
+    }
+  }
+  @media (width >= 40rem) {
+    .sm\:pb-20 {
+      padding-bottom: calc(var(--spacing) * 20);
     }
   }
   @media (width >= 40rem) {

@@ -8,15 +8,15 @@
 
         <!-- CONTENT CONTAINER -->
         <div class="w-full flex items-center justify-center">
-            <div class="w-[1000px] py-20 ">
+            <div class=" w-full sm:w-[1000px]  sm:pt-20 pb-20 px-4 pt-36 ">
                 <form method="post">
-                <div class="w-full bg-white rounded-2xl flex justify-between p-[40px]">
-                    <div class="w-[50%] pt-4 pr-[16px]">
+                <div class="w-full bg-white rounded-2xl flex flex-col gap-4 sm:flex-row justify-between p-4 sm:p-[40px]">
+                    <div class=" w-full sm:w-[50%] pt-4 sm:pr-[16px]">
                         <h3 class="font-bold text-[18px]"> Booking Form </h3>
                         <p class="pb-4"> Feel out the neccesary Information </p>
                         {% csrf_token %}
                         <!-- Fields Wrap -->
-                        <div class="flex flex-col gap-2">
+                        <div class="flex flex-col gap-2 w-full">
                             <div>
                                 <label class="text-[12px]" >Guest Name</label>
                                 {{ form.guest_name }}
@@ -30,11 +30,8 @@
                                 {{ form.guest_phone }}
                             </div>
                         </div>
-
-
-                        
                     </div>
-                    <div class="w-[50%] flex flex-col gap-4" >
+                    <div class=" w-full sm:w-[50%] flex flex-col gap-4" >
                         <div class="rounded-2xl border border-[#F0F0F0] overflow-hidden">
                             <h3 class="px-6 py-4 bg-[#FBF3E7]"> Booking Summary </h3>
                             <div class="pt-2 flex flex-col gap-2">

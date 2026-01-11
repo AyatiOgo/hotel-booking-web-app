@@ -36,10 +36,11 @@
             <a href="{% url 'home' %}">   <img src="{% static 'images/hotel-logo.svg' %}" class="w-[150px]" alt="" srcset=""> </a>
             
             <img src="{% static 'icons/burger.svg' %}" id="burger" class="w-[32px] cursor-pointer " alt="size-icon" >
+            <img src="{% static 'icons/close.svg' %}" id="close" class="w-[32px] hidden cursor-pointer " alt="size-icon" >
         </div>
     </div>
 
-    <div class="w-full hidden gap-4 flex flex-col sm:hidden bg-white px-4 py-4 rounded-lg" id="menu-item"> 
+    <div class="w-full transition-all hidden gap-4 flex flex-col sm:hidden bg-white px-4 py-4 rounded-lg" id="menu-item"> 
                 <p> Rooms </p>
                 <a href="{% url 'check-booking' %}"> Check Bookings </a>
                 <p> About us </p>
@@ -65,9 +66,18 @@
 <script>
     const burger = document.getElementById('burger')
     const menu_item = document.getElementById('menu-item')
+    const close_icon = document.getElementById('close')
 
     burger.addEventListener("click", ()=>{
         menu_item.classList.toggle('hidden')
+        burger.classList.toggle('hidden')
+        close_icon.classList.toggle('hidden')
+    } )
+
+    close_icon.addEventListener("click", ()=>{
+        menu_item.classList.toggle('hidden')
+        burger.classList.toggle('hidden')
+        close_icon.classList.toggle('hidden')
     } )
 
 </script>

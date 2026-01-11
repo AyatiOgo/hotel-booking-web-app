@@ -18,10 +18,10 @@
 
     {% block content %}
     <!-- Hero Section -->
-    <div class="sm:h-[40rem] h-[25rem] bg-no-repeat bg-cover relative " style="background-image: url('{% static 'images/hero-img.jpg' %}')"> 
+    <div class="sm:h-[40rem] h-fit bg-no-repeat bg-cover relative " style="background-image: url('{% static 'images/hero-img.jpg' %}')"> 
         {% include 'components/navbar.html' %}
 
-        <div class="w-full py-24 flex flex-col items-center sm:px-0 px-4">
+        <div class="w-full pt-40 pb-20 sm:py-24 flex flex-col items-center sm:px-0 px-4">
             <h1 class="font-olivera text-[4rem] sm:text-[6rem] leading-none text-white"> Elevate Your Stay </h1>
             <p class="font-olivera text-3xl leading-none text-white pt-[-16px]"> Discover the Art of Fine Living </p>
             <button class="px-4 py-2 bg-[#F2D9B1] font-semibold text-black rounded-md mt-4 cursor-pointer"> View Rooms </button>

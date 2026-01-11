@@ -10,14 +10,15 @@
     <title>Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}">
+    {% tailwind_css %}
+    <!-- <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}"> -->
 
 </head>
 <body>
 
     {% block content %}
     <!-- Hero Section -->
-    <div class="sm:h-[40rem] h-fit bg-no-repeat bg-cover" style="background-image: url('{% static 'images/hero-img.jpg' %}')"> 
+    <div class="sm:h-[40rem] h-[25rem] bg-no-repeat bg-cover relative " style="background-image: url('{% static 'images/hero-img.jpg' %}')"> 
         {% include 'components/navbar.html' %}
 
         <div class="w-full py-24 flex flex-col items-center sm:px-0 px-4">

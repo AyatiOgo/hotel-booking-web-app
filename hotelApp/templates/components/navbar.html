@@ -1,7 +1,7 @@
 {% load static %}
 
-
-<div class="w-full flex justify-center pt-8 " >
+<!-- DESKTOP VIEW -->
+<div class="w-full hidden sm:flex justify-center pt-8 " >
     <div class=" bg-white w-[1300px] rounded-full">
         <div class="w-full flex justify-between py-4 px-8 "> 
             <a href="{% url 'home' %}">   <img src="{% static 'images/hotel-logo.svg' %}" alt="" srcset=""> </a>
@@ -28,3 +28,46 @@
         </div>
     </div>
 </div>
+
+<!-- MOBILE VIEW -->
+<div class="w-full flex flex-col sm:hidden justify-center pt-8 items-center px-4 absolute gap-4" >
+    <div class=" bg-white w-full rounded-full z-10">
+        <div class="w-full flex justify-between py-4 px-8 items-center"> 
+            <a href="{% url 'home' %}">   <img src="{% static 'images/hotel-logo.svg' %}" class="w-[150px]" alt="" srcset=""> </a>
+            
+            <img src="{% static 'icons/burger.svg' %}" id="burger" class="w-[32px] cursor-pointer " alt="size-icon" >
+        </div>
+    </div>
+
+    <div class="w-full hidden gap-4 flex flex-col sm:hidden bg-white px-4 py-4 rounded-lg" id="menu-item"> 
+                <p> Rooms </p>
+                <a href="{% url 'check-booking' %}"> Check Bookings </a>
+                <p> About us </p>
+                <p> Gallery </p>
+                <p> Contact Us </p>
+
+                {% if user.is_authenticated %}
+               <a href="{% url 'logout' %}">  <div class="px-4 py-2 rounded-md bg-gray-200">  Logout  </div></a>
+                <div class="px-4 py-2 bg-[#F2D9B1] font-semibold text-black flex flex-row rounded-full gap-2">
+                <img src="{% static 'icons/acc-icon.svg' %}" alt="" srcset="">
+                <p> {{ user.username }}</p>
+                </div>
+
+                {% else %}
+
+                <button class="px-4 py-2 w-fit bg-[#F2D9B1] font-semibold text-black rounded-md"> View Rooms </button>
+
+                {% endif %}
+</div>
+
+</div>
+
+<script>
+    const burger = document.getElementById('burger')
+    const menu_item = document.getElementById('menu-item')
+
+    burger.addEventListener("click", ()=>{
+        menu_item.classList.toggle('hidden')
+    } )
+
+</script>

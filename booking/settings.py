@@ -36,7 +36,9 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'django_daisy',
     'django.contrib.admin',
+    'django.contrib.humanize',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -45,7 +47,6 @@ INSTALLED_APPS = [
     'hotelApp',
     'tailwind',
     'theme',
-    'django.contrib.humanize',
     'cloudinary', 
     'cloudinary_storage',
 ]
@@ -179,3 +180,41 @@ cloudinary.config(
     api_key = os.getenv('API_KEY'),
     api_secret = os.getenv('API_SECRET'),
 )
+
+# ADMIN_CUSTOMIZATION
+
+DAISY_SETTINGS = {
+    # Branding
+    'SITE_TITLE': 'Django Admin',
+    'SITE_HEADER': 'Administration',
+    'INDEX_TITLE': 'Hi, welcome to your dashboard',
+    'SITE_LOGO': '/static/admin/img/daisyui-logomark.svg',
+    
+    # Customization
+    'EXTRA_STYLES': [],  # Additional CSS files
+    'EXTRA_SCRIPTS': [],  # Additional JS files
+    'LOAD_FULL_STYLES': False,  # Load complete DaisyUI library
+    'SHOW_CHANGELIST_FILTER': False,  # Auto-open filter sidebar
+    'DONT_SUPPORT_ME': False,  # Hide GitHub link
+    'SIDEBAR_FOOTNOTE': '',  # Custom sidebar footer text
+    
+    # Theme Configuration
+    'DEFAULT_THEME': 'dark',  # e.g., 'corporate', 'dark'
+    'DEFAULT_THEME_DARK': None,  # Dark mode default
+    'SHOW_THEME_SELECTOR': True,  # Show/hide theme dropdown
+    'THEME_LIST': [
+        {'name': 'Light', 'value': 'light'},
+        {'name': 'Dark', 'value': 'dark'},
+        # Add custom themes...
+    ],
+    
+    # Third-Party App Customization
+    'APPS_REORDER': {
+        'auth': {
+            'icon': 'fa-solid fa-person-military-pointing',
+            'name': 'Authentication',
+            'hide': False,
+            'divider_title': "Auth",
+        },
+    },
+}

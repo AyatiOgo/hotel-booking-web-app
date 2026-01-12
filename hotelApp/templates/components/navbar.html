@@ -1,7 +1,7 @@
 {% load static %}
 
 <!-- DESKTOP VIEW -->
-<div class="w-full hidden md:max-sm:flex lg:flex justify-center pt-8 " >
+<div class="w-full hidden md:max-sm:flex lg:flex justify-center pt-8 px-4  " >
     <div class=" bg-white w-[1300px] rounded-full">
         <div class="w-full flex justify-between py-4 px-8 "> 
             <a href="{% url 'home' %}">   <img src="{% static 'images/hotel-logo.svg' %}" alt="" srcset=""> </a>
@@ -30,7 +30,7 @@
 </div>
 
 <!-- MOBILE VIEW -->
-<div class="w-full flex flex-col md:max-sm:hidden md lg:hidden justify-center pt-8 items-center px-4 absolute gap-4" >
+<div class="w-full flex flex-col md:max-sm:hidden md lg:hidden justify-center pt-8 items-center px-4 absolute z-50 gap-4" >
     <div class=" bg-white w-full rounded-full z-10">
         <div class="w-full flex justify-between py-4 px-8 items-center"> 
             <a href="{% url 'home' %}">   <img src="{% static 'images/hotel-logo.svg' %}" class="w-[150px]" alt="" srcset=""> </a>
